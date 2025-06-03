@@ -587,6 +587,9 @@ class Executive:
             self.user_exc_info = None
             interruptible = True
             try:
+                print("DEBUG: entering runcode(), installing debug_print.", file=sys.stderr)
+                import idlelib.manualdebug_helpers as manualdebug_helpers
+                manualdebug_helpers.install_debug_print()
                 exec(code, self.locals)
             finally:
                 interruptible = False

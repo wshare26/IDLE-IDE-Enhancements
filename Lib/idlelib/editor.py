@@ -364,7 +364,8 @@ class EditorWindow:
         else:
             self.update_menu_state('options', '*ine*umbers', 'disabled')
         if self.allow_manual_debug:
-            text.bind("<<open-manual-debug>>", lambda event: self.ManualDebug(self.text))
+            from idlelib.manualdebug import ManualDebug
+            text.bind("<<open-manual-debug>>", lambda event: ManualDebug(self))
         else:
             self.update_menu_state('options', '*anual*ebugger', 'disabled')
 
