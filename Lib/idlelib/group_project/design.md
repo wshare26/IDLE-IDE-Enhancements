@@ -22,11 +22,24 @@
 
 #### Manual Debugging
 
+
+- implemented a dialog window in `manualdebug.py` that allows users to add and remove print statements without modifying their code directly
+
+![Manual Debug Diagram](./images/manual_debug_diagram.png)
+
+- implemented line number validation to ensure print statements are only added to valid line numbers, with support for comma-separated multiple line inputs
+
+- implemented a text display area that shows all currently active print statements and their line numbers, with blue text highlighting for better visibility
+
 - To design the base for the ui window for manual debugging, we based the design off of the settings/config menu which inspired and helped lead us to the best classes and functions to use to cleanly create a new pop-up window. We make use of the `Text` and `Frame` classes to create the widget and allow `ManualDebug` to inheirit from `TopLevel` and `BaseWidget` to make use of the `setup()` and `destory()` functions. More elements of UI and functionality implementation can be found below.
 
 ![](debug_window_dia.png)
 
+
 #### Test Design
+
+- We implemented our test cases using Python's unittest, which is the same as the rest of the test cases. We tested each of our features that we added and made changes to `test_pyshell.py`, `test_config.py`, `test_editor.py`, `test_manualdebug.py`, and `test_outwin.py`. We used mocking techniques to isolate the methods from external dependencies and focused on verifying that the behavior that we wanted for our feature implementation. 
+
 
 ## Alternative Approach
 
@@ -38,5 +51,8 @@
 
 - Continuing from the last bullet point, we didn't realize that the implementation broke some of the test cases and needed to be revisited. Additionally the shell became unresponsive with this addition: we couldn't erase text and when we typed simple expressions like `2+2` (input) the expected output `4` was missing. We found out that this was due to changing from using `OutputWindow.write()` to using `text.insert`. We chose to change this because when using the former as an implementation, two error stack traces would be printed, one with the underline and one without. To address this, we used the `iomark` in the Text widget. By setting the iomark's gravity's to `right` before inserting output we ensure that output appears bef ore any new user input and by resetting gravity to `left` we ensure that user input goes after the output which preserves the shell's expected behavior. This approach fixed the problem found from the previous bullet point's implementation and ensured that user input would remain responsive and properly positioned.
 
+## Screenshots of our Features
 
+Screenshot of error stack trace being underlined:
 
+![alt text](https://github.com/user-attachments/assets/8dbbb517-4a75-4853-a290-575642307520)
