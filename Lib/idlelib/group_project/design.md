@@ -38,8 +38,5 @@
 
 - Continuing from the last bullet point, we didn't realize that the implementation broke some of the test cases and needed to be revisited. Additionally the shell became unresponsive with this addition: we couldn't erase text and when we typed simple expressions like `2+2` (input) the expected output `4` was missing. We found out that this was due to changing from using `OutputWindow.write()` to using `text.insert`. We chose to change this because when using the former as an implementation, two error stack traces would be printed, one with the underline and one without. To address this, we used the `iomark` in the Text widget. By setting the iomark's gravity's to `right` before inserting output we ensure that output appears bef ore any new user input and by resetting gravity to `left` we ensure that user input goes after the output which preserves the shell's expected behavior. This approach fixed the problem found from the previous bullet point's implementation and ensured that user input would remain responsive and properly positioned.
 
-## Screenshots of our Features
 
-Screenshot of error stack trace being underlined:
 
-![alt text](https://github.com/user-attachments/assets/8dbbb517-4a75-4853-a290-575642307520)
