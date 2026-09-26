@@ -104,7 +104,7 @@ jobs:
       - name: Runner image version
         run: echo "IMAGE_OS_VERSION=${ImageOS}-${ImageVersion}" >> "$GITHUB_ENV"
       - name: Restore config.cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: config.cache
           # Include env.pythonLocation in key to avoid changes in environment when setup-python updates Python
@@ -286,7 +286,7 @@ jobs:
     - name: Runner image version
       run: echo "IMAGE_OS_VERSION=${ImageOS}-${ImageVersion}" >> "$GITHUB_ENV"
     - name: Restore config.cache
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: config.cache
         key: ${{ github.job }}-${{ env.IMAGE_OS_VERSION }}-${{ needs.build-context.outputs.config-hash }}
@@ -301,7 +301,7 @@ jobs:
         echo "LD_LIBRARY_PATH=${GITHUB_WORKSPACE}/multissl/openssl/${OPENSSL_VER}/lib" >> "$GITHUB_ENV"
     - name: 'Restore OpenSSL build'
       id: cache-openssl
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: ./multissl/openssl/${{ env.OPENSSL_VER }}
         key: ${{ matrix.os }}-multissl-openssl-${{ env.OPENSSL_VER }}
@@ -356,7 +356,7 @@ jobs:
         echo "LD_LIBRARY_PATH=${GITHUB_WORKSPACE}/multissl/openssl/${OPENSSL_VER}/lib" >> "$GITHUB_ENV"
     - name: 'Restore OpenSSL build'
       id: cache-openssl
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: ./multissl/openssl/${{ env.OPENSSL_VER }}
         key: ${{ runner.os }}-multissl-openssl-${{ env.OPENSSL_VER }}
@@ -381,7 +381,7 @@ jobs:
     - name: Runner image version
       run: echo "IMAGE_OS_VERSION=${ImageOS}-${ImageVersion}" >> "$GITHUB_ENV"
     - name: Restore config.cache
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: ${{ env.CPYTHON_BUILDDIR }}/config.cache
         key: ${{ github.job }}-${{ env.IMAGE_OS_VERSION }}-${{ needs.build-context.outputs.config-hash }}
@@ -415,7 +415,7 @@ jobs:
         ./python -m venv "$VENV_LOC" && "$VENV_PYTHON" -m pip install -r "${GITHUB_WORKSPACE}/Tools/requirements-hypothesis.txt"
     - name: 'Restore Hypothesis database'
       id: cache-hypothesis-database
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: ${{ env.CPYTHON_BUILDDIR }}/.hypothesis/
         key: hypothesis-database-${{ github.head_ref || github.run_id }}
@@ -468,7 +468,7 @@ jobs:
     - name: Runner image version
       run: echo "IMAGE_OS_VERSION=${ImageOS}-${ImageVersion}" >> "$GITHUB_ENV"
     - name: Restore config.cache
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: config.cache
         key: ${{ github.job }}-${{ env.IMAGE_OS_VERSION }}-${{ needs.build-context.outputs.config-hash }}
@@ -487,7 +487,7 @@ jobs:
         echo "LD_LIBRARY_PATH=${GITHUB_WORKSPACE}/multissl/openssl/${OPENSSL_VER}/lib" >> "$GITHUB_ENV"
     - name: 'Restore OpenSSL build'
       id: cache-openssl
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: ./multissl/openssl/${{ env.OPENSSL_VER }}
         key: ${{ matrix.os }}-multissl-openssl-${{ env.OPENSSL_VER }}
@@ -541,7 +541,7 @@ jobs:
       - name: Runner image version
         run: echo "IMAGE_OS_VERSION=${ImageOS}-${ImageVersion}" >> "$GITHUB_ENV"
       - name: Restore config.cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: config.cache
           key: ${{ github.job }}-${{ env.IMAGE_OS_VERSION }}-${{ needs.build-context.outputs.config-hash }}
